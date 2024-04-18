@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/matter.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+    <title>Diário Introdução Alimentar</title>
+    
+    <script defer src="components/meal-entry.js"></script>
+
+
+
+</head>
+
+<body>
+    <header>
+        <div class="header-bar"></div>
+        <div class="title center-text">
+            <h2>Diário de Introdução Alimentar</h2>
+        </div>
+    </header>
+
+    <div id="btnContainer" class="container left-container">
+        <button class="matter-button-contained margin-10" onclick="showEntryForm()">Adicionar Registro</button>
+    </div>
+
+
+    <!--Formulario para inserção de refeicoes e definicao da data de registro-->
+    <div id="newEntryContainer" class="new-entry-container" hidden>
+
+        <div class="form-container">
+            <div class="form-title center-text">
+                <span class="spacer"></span>
+                <h3>Novo Registro</h3>
+                <div class="left-container">
+                    <button class="matter-button-contained secondary-icon-button" onclick="commitOperation()"><i
+                            class="fa fa-save"></i></button>
+                    <button class="matter-button-contained secondary-icon-button" onclick="resetForm()"><i
+                            class="fa fa-close"></i></button>
+                </div>
+
+            </div>
+
+            <div class="form primary-scroll">
+                <label class="matter-textfield-outlined">
+                    <input type="date" id="entryDate" required />
+                    <span>Data</span>
+                </label>
+
+                <h4 class="primary-color col">Refeições Oferecidas</h4>
+
+                <div class="col">
+                    <div>
+                        <label class="matter-switch">
+                            <input id="morningSnackCheck" type="checkbox" role="switch" name="morningSnack">
+                            <span>Lanche Manhã</span>
+                        </label>
+
+                        <button id="morningSnackHideShowBtn" class="mini-icon-button matter-button-contained"
+                            onclick="toggleHiddenAttr(this)" meal="morningSnack" hidden><i
+                                class="fa fa-angle-up"></i></button>
+                        <button id="morningSnackResetBtn" class="mini-icon-button matter-button-contained"
+                            onclick="resetMealData(this)" meal="morningSnack" hidden><i
+                                class="fa fa-eraser"></i></button>
+                    </div>
+                    <div>
+                        <meal-entry id="morningSnackEntry" meal="morningSnack" hidden></meal-entry>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div>
+                        <label class="matter-switch">
+                            <input id="lunchCheck" type="checkbox" role="switch" name="lunch">
+                            <span>Almoço</span>
+                        </label>
+                        <button id="lunchHideShowBtn" class="mini-icon-button matter-button-contained"
+                            onclick="toggleHiddenAttr(this)" meal="lunch" hidden><i
+                                class="fa fa-angle-up "></i></button>
+                        <button id="lunchResetBtn" class="mini-icon-button matter-button-contained"
+                            onclick="resetMealData(this)" meal="lunch" hidden><i class="fa fa-eraser"></i></button>
+                    </div>
+                    <meal-entry id="lunchEntry" hidden></meal-entry>
+                </div>
+
+                <div class="col">
+                    <div>
+
+                        <label class="matter-switch">
+                            <input id="afternoonSnackCheck" type="checkbox" role="switch" name="afternoonSnack">
+                            <span>Lanche Tarde</span>
+                        </label>
+                        <button id="afternoonSnackHideShowBtn" class="mini-icon-button matter-button-contained"
+                            onclick="toggleHiddenAttr(this)" meal="afternoonSnack" hidden><i
+                                class="fa fa-angle-up"></i></button>
+                        <button id="afternoonSnackResetBtn" class="mini-icon-button matter-button-contained"
+                            onclick="resetMealData(this)" meal="afternoonSnack" hidden><i
+                                class="fa fa-eraser"></i></button>
+                    </div>
+                    <meal-entry id="afternoonSnackEntry" hidden></meal-entry>
+                </div>
+
+                <div class="col">
+                    <div>
+                        <label class="matter-switch">
+                            <input id="dinnerCheck" type="checkbox" role="switch" name="dinner">
+                            <span>Jantar</span>
+                        </label>
+                        <button id="dinnerHideShowBtn" class="mini-icon-button matter-button-contained"
+                            onclick="toggleHiddenAttr(this)" meal="dinner" hidden><i
+                                class="fa fa-angle-up"></i></button>
+                        <button id="dinnerResetBtn" class="mini-icon-button matter-button-contained"
+                            onclick="resetMealData(this)" meal="dinner" hidden><i class="fa fa-eraser"></i></button>
+                    </div>
+                    <meal-entry id="dinnerEntry" hidden></meal-entry>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!--Tabela com a lista de registros inseridos-->
+    <div id="tableContainer" class="container">
+        <table id="table" class="table">
+            <thead>
+                <th>Data</th>
+                <th>Lanche Manhã</th>
+                <th>Almoço</th>
+                <th>Lanche Tarde</th>
+                <th>Jantar</th>
+                <th></th>
+                <th></th>
+            </thead>
+        </table>
+    </div>
+
+
+    <script src="scripts.js"></script>
+</body>
+
+</html>
