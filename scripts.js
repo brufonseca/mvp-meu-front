@@ -28,7 +28,6 @@ const getEntriesForList = () => {
     })
         .then((response) => response.json())
         .then((data) => {
-            console.log(data)
             data["diarios"].forEach(entry => {
                 let entryData = {};
                 let date = new Date(entry.data_registro);
@@ -411,9 +410,6 @@ const postEntry = (entry) => {
         "data_registro": entry["date"],
         "refeicoes": Object.values(entry["mealIdx"])
     }
-
-
-    console.log(data);
 
     let url = 'http://127.0.0.1:5000/inserir_diario';
 
